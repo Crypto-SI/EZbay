@@ -28,12 +28,6 @@
             }
         }
     ],
-    "functions": {
-        "api/*.py": {
-            "memory": 1024,
-            "maxDuration": 60
-        }
-    },
     "env": {
         "ALLOWED_ORIGINS": "https://e-zbay.vercel.app,https://ezbay-front.vercel.app,http://localhost:5173"
     }
