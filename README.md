@@ -137,4 +137,44 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Author
 
-Built by [CryptoSI](https://github.com/CryptoSI) 
+Built by [CryptoSI](https://github.com/CryptoSI)
+
+## Common Issues and Troubleshooting
+
+### Local Development
+1. **Docker Network Issues**: If containers can't communicate, ensure Docker network is properly configured and all services are running (`docker-compose ps`).
+2. **Environment Variables**: Double-check that all required environment variables are set in your `.env` file. Missing variables will cause startup failures.
+3. **Port Conflicts**: If ports 8000 or 5173 are already in use, either stop the conflicting services or modify the port mappings in `docker-compose.yml`.
+4. **Hot Reload Not Working**: In some cases, the development server might not detect changes. Try restarting the container with `docker-compose restart frontend`.
+
+### API Integration
+1. **CORS Errors**: If you see CORS-related errors in the console:
+   - Verify that `ALLOWED_ORIGINS` includes your frontend URL
+   - For local development, ensure it includes `http://localhost:5173`
+   - Check that the backend is properly handling OPTIONS requests
+2. **API Key Issues**: If the Hyperbolic API isn't responding:
+   - Confirm your API key is valid and properly set in the environment
+   - Check the backend logs for any authentication errors
+   - Ensure you're not hitting rate limits
+
+### Vercel Deployment
+1. **Build Failures**: 
+   - Ensure all dependencies are listed in `requirements.txt` (backend) and `package.json` (frontend)
+   - Check that Node.js and Python versions are compatible with Vercel
+2. **Runtime Errors**:
+   - Verify all environment variables are set in Vercel project settings
+   - For the frontend, ensure `VITE_API_URL` points to the correct backend URL
+   - For the backend, confirm `ALLOWED_ORIGINS` includes the frontend's domain
+3. **Timeout Issues**:
+   - Consider upgrading your Vercel plan if you experience function timeouts
+   - Optimize API calls to complete within serverless function limits
+
+### Performance
+1. **Slow Response Times**: 
+   - The AI model generation can take 10-30 seconds depending on the request
+   - Consider using the smaller model for faster responses
+2. **Memory Usage**:
+   - The application may use significant memory during image generation
+   - Monitor container resources if running on limited hardware
+
+For any other issues, please check the [Issues](https://github.com/yourusername/EZbay/issues) section of the repository or create a new issue. 
