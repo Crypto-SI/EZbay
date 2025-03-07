@@ -11,7 +11,7 @@
             "src": "/api/(.*)",
             "dest": "main.py",
             "headers": {
-                "Access-Control-Allow-Origin": "https://e-zbay-front.vercel.app",
+                "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
                 "Access-Control-Max-Age": "3600"
@@ -21,7 +21,7 @@
             "src": "/(.*)",
             "dest": "main.py",
             "headers": {
-                "Access-Control-Allow-Origin": "https://e-zbay-front.vercel.app",
+                "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
                 "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
                 "Access-Control-Max-Age": "3600"
@@ -31,7 +31,10 @@
     "functions": {
         "api/*.py": {
             "memory": 1024,
-            "maxDuration": 10
+            "maxDuration": 60
         }
+    },
+    "env": {
+        "ALLOWED_ORIGINS": "https://ezbay-front.vercel.app,http://localhost:5173"
     }
 } 

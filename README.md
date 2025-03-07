@@ -110,6 +110,10 @@ npm run dev
 
 The application will be available at `http://localhost:5173`
 
+### Option 3: Deploying to Vercel
+
+EZbay can be deployed to Vercel by separating the frontend and backend into two different Vercel projects. For detailed deployment instructions, see [VERCEL_DEPLOYMENT.md](VERCEL_DEPLOYMENT.md).
+
 ## Usage
 
 1. Enter your item details including name and condition
