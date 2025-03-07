@@ -27,5 +27,11 @@
                 "Access-Control-Max-Age": "3600"
             }
         }
-    ]
+    ],
+    "functions": {
+        "api/*.py": {
+            "memory": 1024,
+            "maxDuration": 10
+        }
+    }
 } 
