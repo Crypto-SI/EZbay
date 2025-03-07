@@ -11,6 +11,8 @@ EZbay is a modern web application that helps sellers create professional eBay li
 - 🎨 Modern, responsive UI
 - ⚡ Fast and efficient
 
+For planned enhancements and future development, see our [Future Features Roadmap](FUTURE_FEATURES.md).
+
 ## Tech Stack
 
 ### Frontend
