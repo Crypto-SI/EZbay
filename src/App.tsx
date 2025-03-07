@@ -137,48 +137,48 @@ const App: React.FC = () => {
         <VStack spacing={8} align="stretch">
           <Box textAlign="center">
             <Heading 
-              size="2xl" 
+              size={{ base: "xl", md: "2xl" }}
               color={ebayBlue}
               mb={2}
             >
               EZbay Listing Assistant
             </Heading>
-            <Text color={ebayGray} fontSize="lg">
+            <Text color={ebayGray} fontSize={{ base: "md", md: "lg" }}>
               Create professional eBay listings in seconds
             </Text>
           </Box>
           
-          <HStack spacing={8} align="start">
+          <HStack spacing={{ base: 4, md: 8 }} align="start" flexDirection={{ base: "column", md: "row" }}>
             {/* Left Column - Instructions and Form */}
-            <Box flex={1}>
+            <Box flex={1} width={{ base: "100%", md: "auto" }}>
               <Card mb={6} shadow="md" borderWidth="1px" borderColor={ebayBlue}>
                 <CardHeader bg={ebayBlue} color="white" borderTopRadius="md">
                   <HStack>
                     <Icon as={InfoIcon} />
-                    <Heading size="md">Instructions</Heading>
+                    <Heading size={{ base: "sm", md: "md" }}>Instructions</Heading>
                   </HStack>
                 </CardHeader>
                 <CardBody>
-                  <VStack align="start" spacing={4}>
-                    <Text>1. Enter the item name</Text>
-                    <Text>2. Add the EAN (European Article Number)</Text>
-                    <Text>3. Include the MPN (Manufacturer Part Number)</Text>
-                    <Text>4. Enter the RRP (Recommended Retail Price)</Text>
-                    <Text>5. Choose your preferred model size</Text>
-                    <Text>6. Click "Generate Listing" to create your eBay description</Text>
+                  <VStack align="start" spacing={3}>
+                    <Text fontSize={{ base: "sm", md: "md" }}>1. Enter the item name</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }}>2. Add the EAN (European Article Number)</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }}>3. Include the MPN (Manufacturer Part Number)</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }}>4. Enter the RRP (Recommended Retail Price)</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }}>5. Choose your preferred model size</Text>
+                    <Text fontSize={{ base: "sm", md: "md" }}>6. Click "Generate Listing" to create your eBay description</Text>
                   </VStack>
                 </CardBody>
               </Card>
 
               <Card shadow="md" borderWidth="1px" borderColor={ebayBlue}>
                 <CardHeader bg={ebayBlue} color="white" borderTopRadius="md">
-                  <Heading size="md">Item Details</Heading>
+                  <Heading size={{ base: "sm", md: "md" }}>Item Details</Heading>
                 </CardHeader>
                 <CardBody>
                   <Box as="form" onSubmit={handleSubmit}>
                     <VStack spacing={4}>
                       <FormControl isRequired>
-                        <FormLabel color={ebayGray}>Item Name</FormLabel>
+                        <FormLabel color={ebayGray} fontSize={{ base: "sm", md: "md" }}>Item Name</FormLabel>
                         <Input
                           name="itemName"
                           value={formData.itemName}
@@ -186,11 +186,12 @@ const App: React.FC = () => {
                           placeholder="Enter item name"
                           borderColor={ebayBlue}
                           _focus={{ borderColor: ebayDarkBlue }}
+                          size={{ base: "sm", md: "md" }}
                         />
                       </FormControl>
 
                       <FormControl isRequired>
-                        <FormLabel color={ebayGray}>
+                        <FormLabel color={ebayGray} fontSize={{ base: "sm", md: "md" }}>
                           Grade
                           <Tooltip 
                             label={
@@ -214,17 +215,17 @@ const App: React.FC = () => {
                           value={formData.grade}
                           colorScheme="blue"
                         >
-                          <HStack spacing={6}>
-                            <Radio value="A">Grade A</Radio>
-                            <Radio value="B">Grade B</Radio>
-                            <Radio value="C">Grade C</Radio>
-                            <Radio value="F">Grade F</Radio>
+                          <HStack spacing={{ base: 3, md: 6 }} wrap="wrap">
+                            <Radio value="A" size={{ base: "sm", md: "md" }}>Grade A</Radio>
+                            <Radio value="B" size={{ base: "sm", md: "md" }}>Grade B</Radio>
+                            <Radio value="C" size={{ base: "sm", md: "md" }}>Grade C</Radio>
+                            <Radio value="F" size={{ base: "sm", md: "md" }}>Grade F</Radio>
                           </HStack>
                         </RadioGroup>
                       </FormControl>
 
                       <FormControl>
-                        <FormLabel color={ebayGray}>EAN (Optional)</FormLabel>
+                        <FormLabel color={ebayGray} fontSize={{ base: "sm", md: "md" }}>EAN (Optional)</FormLabel>
                         <Input
                           name="ean"
                           value={formData.ean}
@@ -232,11 +233,12 @@ const App: React.FC = () => {
                           placeholder="Enter EAN (European Article Number)"
                           borderColor={ebayBlue}
                           _focus={{ borderColor: ebayDarkBlue }}
+                          size={{ base: "sm", md: "md" }}
                         />
                       </FormControl>
 
                       <FormControl>
-                        <FormLabel color={ebayGray}>MPN (Optional)</FormLabel>
+                        <FormLabel color={ebayGray} fontSize={{ base: "sm", md: "md" }}>MPN (Optional)</FormLabel>
                         <Input
                           name="mpn"
                           value={formData.mpn}
@@ -244,11 +246,12 @@ const App: React.FC = () => {
                           placeholder="Enter MPN (Manufacturer Part Number)"
                           borderColor={ebayBlue}
                           _focus={{ borderColor: ebayDarkBlue }}
+                          size={{ base: "sm", md: "md" }}
                         />
                       </FormControl>
 
                       <FormControl>
-                        <FormLabel color={ebayGray}>RRP (Optional)</FormLabel>
+                        <FormLabel color={ebayGray} fontSize={{ base: "sm", md: "md" }}>RRP (Optional)</FormLabel>
                         <Input
                           name="rrp"
                           type="number"
@@ -257,11 +260,12 @@ const App: React.FC = () => {
                           placeholder="Enter RRP (Recommended Retail Price)"
                           borderColor={ebayBlue}
                           _focus={{ borderColor: ebayDarkBlue }}
+                          size={{ base: "sm", md: "md" }}
                         />
                       </FormControl>
 
                       <FormControl display="flex" alignItems="center">
-                        <FormLabel mb="0" color={ebayGray}>
+                        <FormLabel mb="0" color={ebayGray} fontSize={{ base: "sm", md: "md" }}>
                           Use 70B Model (Better Quality)
                         </FormLabel>
                         <Switch
@@ -269,9 +273,9 @@ const App: React.FC = () => {
                           isChecked={formData.useLargeModel}
                           onChange={handleChange}
                           colorScheme="blue"
-                          size="lg"
+                          size={{ base: "sm", md: "lg" }}
                         />
-                        <FormHelperText color={ebayGray}>
+                        <FormHelperText color={ebayGray} fontSize={{ base: "xs", md: "sm" }}>
                           {formData.useLargeModel ? "Using 70B model for better quality" : "Using 8B model for faster generation"}
                         </FormHelperText>
                       </FormControl>
@@ -281,7 +285,7 @@ const App: React.FC = () => {
                         bg={ebayBlue}
                         color="white"
                         width="full"
-                        size="lg"
+                        size={{ base: "md", md: "lg" }}
                         isLoading={isLoading}
                         _hover={{ bg: ebayDarkBlue }}
                       >
@@ -294,10 +298,10 @@ const App: React.FC = () => {
             </Box>
 
             {/* Right Column - Preview */}
-            <Box flex={1}>
+            <Box flex={1} width={{ base: "100%", md: "auto" }}>
               <Card shadow="md" borderWidth="1px" borderColor={ebayBlue}>
                 <CardHeader bg={ebayBlue} color="white" borderTopRadius="md">
-                  <Heading size="md">Generated eBay Listing</Heading>
+                  <Heading size={{ base: "sm", md: "md" }}>Generated eBay Listing</Heading>
                 </CardHeader>
                 <CardBody>
                   {isLoading ? (
@@ -306,7 +310,7 @@ const App: React.FC = () => {
                       borderWidth="1px"
                       borderRadius="md"
                       bg="white"
-                      minH="500px"
+                      minH={{ base: "300px", md: "500px" }}
                       display="flex"
                       flexDirection="column"
                       alignItems="center"
@@ -328,10 +332,10 @@ const App: React.FC = () => {
                           }
                         }}
                       />
-                      <Text color={ebayGray} fontSize="lg" fontWeight="medium">
+                      <Text color={ebayGray} fontSize={{ base: "md", md: "lg" }} fontWeight="medium">
                         Generating your listing...
                       </Text>
-                      <Text color={ebayGray} fontSize="sm" textAlign="center">
+                      <Text color={ebayGray} fontSize={{ base: "xs", md: "sm" }} textAlign="center">
                         This may take a few moments
                       </Text>
                     </Box>
@@ -342,10 +346,11 @@ const App: React.FC = () => {
                         borderWidth="1px"
                         borderRadius="md"
                         bg="white"
-                        minH="500px"
+                        minH={{ base: "300px", md: "500px" }}
                         whiteSpace="pre-wrap"
                         color={ebayGray}
                         fontFamily="monospace"
+                        fontSize={{ base: "sm", md: "md" }}
                       >
                         {generatedListing}
                       </Box>
@@ -360,7 +365,7 @@ const App: React.FC = () => {
                             bg={ebayBlue}
                             color="white"
                             flex={1}
-                            size="lg"
+                            size={{ base: "sm", md: "lg" }}
                             onClick={async () => {
                               try {
                                 await navigator.clipboard.writeText(generatedListing);
@@ -397,7 +402,7 @@ const App: React.FC = () => {
                             bg={ebayYellow}
                             color="white"
                             flex={1}
-                            size="lg"
+                            size={{ base: "sm", md: "lg" }}
                             isDisabled={true}
                             _hover={{ bg: ebayYellow }}
                             _disabled={{ bg: 'gray.300' }}
@@ -413,12 +418,12 @@ const App: React.FC = () => {
                       borderWidth="1px"
                       borderRadius="md"
                       bg="gray.50"
-                      minH="500px"
+                      minH={{ base: "300px", md: "500px" }}
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Text color={ebayGray}>Your generated listing will appear here</Text>
+                      <Text color={ebayGray} fontSize={{ base: "sm", md: "md" }}>Your generated listing will appear here</Text>
                     </Box>
                   )}
                 </CardBody>
