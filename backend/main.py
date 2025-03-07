@@ -5,7 +5,7 @@ from pydantic import BaseModel
 import httpx
 import os
 from dotenv import load_dotenv
-from typing import Optional
+from typing import Optional, List
 import json
 import logging
 
@@ -16,19 +16,31 @@ logger = logging.getLogger(__name__)
 # Load environment variables
 load_dotenv()
 
-# Get API key
+# Environment variables with defaults
 API_KEY = os.getenv('HYPERBOLIC_API_KEY')
 if not API_KEY:
     raise ValueError("HYPERBOLIC_API_KEY environment variable is not set")
 
+# Server configuration
+PORT = int(os.getenv('PORT', '8000'))
+HOST = os.getenv('HOST', '0.0.0.0')
+
+# CORS configuration
+ALLOWED_ORIGINS = os.getenv('ALLOWED_ORIGINS', 'https://e-zbay-front.vercel.app,http://localhost:5173').split(',')
+
+# Model configuration
+DEFAULT_MODEL = os.getenv('DEFAULT_MODEL', 'meta-llama/Meta-Llama-3.1-8B-Instruct')
+LARGE_MODEL = os.getenv('LARGE_MODEL', 'meta-llama/Llama-3.3-70B-Instruct')
+
 logger.info(f"API Key loaded: {API_KEY[:10]}...")
+logger.info(f"Allowed origins: {ALLOWED_ORIGINS}")
 
 app = FastAPI()
 
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://e-zbay-front.vercel.app"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -38,7 +50,15 @@ app.add_middleware(
 
 @app.get("/")
 async def health_check():
-    return JSONResponse({"status": "ok", "message": "API is running"})
+    return JSONResponse({
+        "status": "ok",
+        "message": "API is running",
+        "config": {
+            "allowed_origins": ALLOWED_ORIGINS,
+            "default_model": DEFAULT_MODEL,
+            "large_model": LARGE_MODEL
+        }
+    })
 
 @app.options("/api/generate-listing")
 async def options_generate_listing():
@@ -139,7 +159,7 @@ Item Name: {modified_item_name}
 
         # Configure model parameters based on selection
         model_config = {
-            "model": "meta-llama/Llama-3.3-70B-Instruct" if request.useLargeModel else "meta-llama/Meta-Llama-3.1-8B-Instruct",
+            "model": LARGE_MODEL if request.useLargeModel else DEFAULT_MODEL,
             "max_tokens": 512 if request.useLargeModel else 2048,
             "temperature": 0.1,  # Lower temperature for more consistent output
             "top_p": 0.1,  # Lower top_p for more focused output
@@ -225,4 +245,4 @@ Item Name: {modified_item_name}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="debug") 
+    uvicorn.run(app, host=HOST, port=PORT, log_level="debug") 
