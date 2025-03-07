@@ -62,7 +62,13 @@ async def health_check():
 
 @app.options("/api/generate-listing")
 async def options_generate_listing():
-    return JSONResponse({"status": "ok"})
+    headers = {
+        "Access-Control-Allow-Origin": "*",  # This will be replaced by CORS middleware with the correct origin if it's in ALLOWED_ORIGINS
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        "Access-Control-Max-Age": "3600",
+    }
+    return JSONResponse({"status": "ok"}, headers=headers)
 
 @app.exception_handler(404)
 async def not_found_handler(request: Request, exc: HTTPException):
