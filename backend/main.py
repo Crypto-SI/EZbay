@@ -28,10 +28,10 @@ app = FastAPI()
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins
+    allow_origins=["https://e-zbay-front.vercel.app"],  # Allow specific origin
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all methods
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["GET", "POST", "OPTIONS"],  # Allow specific methods
+    allow_headers=["Content-Type", "Accept", "Authorization"],  # Allow specific headers
     expose_headers=["*"],  # Expose all headers
     max_age=3600,
 )
