@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import httpx
 import os
@@ -34,6 +35,10 @@ app.add_middleware(
     expose_headers=["*"],  # Expose all headers
     max_age=3600,
 )
+
+@app.get("/")
+async def health_check():
+    return JSONResponse({"status": "ok", "message": "API is running"})
 
 class ListingRequest(BaseModel):
     itemName: str
