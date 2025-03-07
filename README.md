@@ -16,7 +16,7 @@ EZbay is a modern web application that helps sellers create professional eBay li
 ### Frontend
 - React with TypeScript
 - Vite for fast development
-- Tailwind CSS for styling
+- Chakra UI for styling
 - Modern UI components
 
 ### Backend
@@ -26,16 +26,43 @@ EZbay is a modern web application that helps sellers create professional eBay li
 
 ## Getting Started
 
-### Prerequisites
-- Node.js (v16 or higher)
-- Python 3.8 or higher
-- npm or yarn
+### Option 1: Using Docker (Recommended)
 
-### Installation
+#### Prerequisites
+- Docker and Docker Compose
+
+#### Installation and Setup
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/YOUR_USERNAME/EZbay.git
+git clone https://github.com/CryptoSI/EZbay.git
+cd EZbay
+```
+
+2. Create an `.env.docker` file in the root directory:
+```
+HYPERBOLIC_API_KEY=your_hyperbolic_api_key_here
+```
+
+3. Build and run the application:
+```bash
+docker-compose --env-file .env.docker up --build
+```
+
+The application will be available at `http://localhost:5173`. The backend API will be running at `http://localhost:8000`.
+
+### Option 2: Manual Setup
+
+#### Prerequisites
+- Node.js (v16 or higher)
+- Python 3.11 or higher (Python 3.13 may have compatibility issues with some dependencies)
+- npm or yarn
+
+#### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/CryptoSI/EZbay.git
 cd EZbay
 ```
 
@@ -55,6 +82,11 @@ pip install -r requirements.txt
 4. Create a `.env` file in the backend directory:
 ```
 HYPERBOLIC_API_KEY=your_api_key_here
+PORT=8000
+HOST=0.0.0.0
+ALLOWED_ORIGINS=http://localhost:5173,https://e-zbay-front.vercel.app
+DEFAULT_MODEL=meta-llama/Meta-Llama-3.1-8B-Instruct
+LARGE_MODEL=meta-llama/Llama-3.3-70B-Instruct
 ```
 
 5. Create a `.env` file in the root directory:
@@ -62,13 +94,13 @@ HYPERBOLIC_API_KEY=your_api_key_here
 VITE_API_URL=http://localhost:8000
 ```
 
-### Running the Application
+#### Running the Application Manually
 
 1. Start the backend server:
 ```bash
 cd backend
 source venv/bin/activate  # On Windows: venv\Scripts\activate
-python main.py
+python -m uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
 2. Start the frontend development server:
@@ -97,4 +129,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Hyperbolic API for AI capabilities
 - eBay for the platform integration
-- All contributors and users of the project 
+- All contributors and users of the project
+
+## Author
+
+Built by [CryptoSI](https://github.com/CryptoSI) 
