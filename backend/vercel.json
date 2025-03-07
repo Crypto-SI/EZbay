@@ -8,31 +8,8 @@
     ],
     "routes": [
         {
-            "src": "/api/generate-listing",
-            "dest": "main.py",
-            "methods": ["POST", "OPTIONS"],
-            "headers": {
-                "Access-Control-Allow-Origin": "https://e-zbay-front.vercel.app",
-                "Access-Control-Allow-Methods": "POST, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
-                "Access-Control-Max-Age": "3600"
-            }
-        },
-        {
-            "src": "/",
-            "dest": "main.py",
-            "methods": ["GET", "OPTIONS"],
-            "headers": {
-                "Access-Control-Allow-Origin": "https://e-zbay-front.vercel.app",
-                "Access-Control-Allow-Methods": "GET, OPTIONS",
-                "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
-                "Access-Control-Max-Age": "3600"
-            }
-        },
-        {
             "src": "/(.*)",
             "dest": "main.py",
-            "methods": ["GET", "POST", "OPTIONS"],
             "headers": {
                 "Access-Control-Allow-Origin": "https://e-zbay-front.vercel.app",
                 "Access-Control-Allow-Methods": "GET, POST, OPTIONS",

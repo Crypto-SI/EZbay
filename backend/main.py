@@ -28,17 +28,21 @@ app = FastAPI()
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://e-zbay-front.vercel.app"],  # Allow specific origin
+    allow_origins=["https://e-zbay-front.vercel.app"],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],  # Allow specific methods
-    allow_headers=["Content-Type", "Accept", "Authorization"],  # Allow specific headers
-    expose_headers=["*"],  # Expose all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"],
     max_age=3600,
 )
 
 @app.get("/")
 async def health_check():
     return JSONResponse({"status": "ok", "message": "API is running"})
+
+@app.options("/api/generate-listing")
+async def options_generate_listing():
+    return JSONResponse({"status": "ok"})
 
 @app.exception_handler(404)
 async def not_found_handler(request: Request, exc: HTTPException):
