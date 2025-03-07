@@ -8,6 +8,16 @@
     ],
     "routes": [
         {
+            "src": "/api/(.*)",
+            "dest": "main.py",
+            "headers": {
+                "Access-Control-Allow-Origin": "https://e-zbay-front.vercel.app",
+                "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type, Accept, Authorization",
+                "Access-Control-Max-Age": "3600"
+            }
+        },
+        {
             "src": "/(.*)",
             "dest": "main.py",
             "headers": {
