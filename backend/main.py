@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
@@ -39,6 +39,22 @@ app.add_middleware(
 @app.get("/")
 async def health_check():
     return JSONResponse({"status": "ok", "message": "API is running"})
+
+@app.exception_handler(404)
+async def not_found_handler(request: Request, exc: HTTPException):
+    logger.error(f"404 Not Found: {request.url}")
+    return JSONResponse(
+        status_code=404,
+        content={"detail": f"Endpoint {request.url} not found"}
+    )
+
+@app.exception_handler(500)
+async def internal_error_handler(request: Request, exc: HTTPException):
+    logger.error(f"500 Internal Server Error: {str(exc)}")
+    return JSONResponse(
+        status_code=500,
+        content={"detail": str(exc)}
+    )
 
 class ListingRequest(BaseModel):
     itemName: str
