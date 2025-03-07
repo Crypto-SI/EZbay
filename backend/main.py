@@ -26,7 +26,7 @@ PORT = int(os.getenv('PORT', '8000'))
 HOST = os.getenv('HOST', '0.0.0.0')
 
 # CORS configuration
-ALLOWED_ORIGINS = os.getenv('ALLOWED_ORIGINS', 'https://e-zbay-front.vercel.app,http://localhost:5173').split(',')
+ALLOWED_ORIGINS = os.getenv('ALLOWED_ORIGINS', 'https://e-zbay.vercel.app,https://e-zbay-front.vercel.app,http://localhost:5173').split(',')
 
 # Model configuration
 DEFAULT_MODEL = os.getenv('DEFAULT_MODEL', 'meta-llama/Meta-Llama-3.1-8B-Instruct')
