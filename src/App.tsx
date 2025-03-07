@@ -77,7 +77,10 @@ const App: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
+        credentials: 'include',
+        mode: 'cors',
         body: JSON.stringify({
           itemName: modifiedItemName,
           grade: formData.grade,
