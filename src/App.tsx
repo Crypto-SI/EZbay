@@ -79,7 +79,6 @@ const App: React.FC = () => {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        credentials: 'include',
         mode: 'cors',
         body: JSON.stringify({
           itemName: modifiedItemName,
