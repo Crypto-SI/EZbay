@@ -71,6 +71,8 @@ const App: React.FC = () => {
       const modifiedItemName = `${condition} ${formData.itemName}`
 
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+      console.log('Using API URL:', apiUrl) // Debug log
+
       const response = await fetch(`${apiUrl}/api/generate-listing`, {
         method: 'POST',
         headers: {
@@ -86,10 +88,12 @@ const App: React.FC = () => {
         }),
       })
 
+      console.log('Response status:', response.status) // Debug log
       const data = await response.json()
+      console.log('Response data:', data) // Debug log
 
       if (!response.ok) {
-        throw new Error(data.detail || 'Failed to generate listing')
+        throw new Error(data.detail || `HTTP error! status: ${response.status}`)
       }
 
       setGeneratedListing(data.listing)
@@ -101,7 +105,7 @@ const App: React.FC = () => {
         isClosable: true,
       })
     } catch (error) {
-      console.error('Error:', error)
+      console.error('Detailed error:', error) // Enhanced error logging
       toast({
         title: 'Error',
         description: error instanceof Error ? error.message : 'Failed to generate listing. Please try again.',
